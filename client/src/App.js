@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    request.get('/todoitems')
+    request.get('http://192.168.30.11/todoitems')
       .end((err, res) => {
         if (err) {
           return;
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   addListItem (value){
-    request.post('/todoitems')
+    request.post('http://192.168.30.11/todoitems')
       .send(value)
       .end((err, res)=>{
         if (err) {
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   updateListItem(id) {
-    request.put(`/todoitems/${id}`)
+    request.put(`http://192.168.30.11/todoitems/${id}`)
       .end((err, res) => {
         if (err) {
           return err;
@@ -53,7 +53,7 @@ class App extends React.Component {
   }
 
   deleteListItem(id) {
-    request.delete(`/todoitems/${id}`)
+    request.delete(`http://192.168.30.11/todoitems/${id}`)
       .end((err, res) => {
         if (err) {
           return err;
