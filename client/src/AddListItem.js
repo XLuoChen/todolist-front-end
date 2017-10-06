@@ -12,7 +12,7 @@ export default class AddList extends Component {
   }
 
   render() {
-    return (<div className="col-lg-6">
+    return (<div className="col-lg-7">
       <input type="text" ref="input" className="form-control" onKeyDown={this.enterChange.bind(this)}/>
     </div>)
   }

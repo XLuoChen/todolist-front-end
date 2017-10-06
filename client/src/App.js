@@ -19,50 +19,50 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    request.get('http://192.168.30.11/todoitems')
+    request.get('http://192.168.30.12/todoitems')
       .end((err, res) => {
         if (err) {
           return;
         }
-        this.setState({itemLists: res.body});
+        this.setState({itemLists: res.body.items});
       })
   }
 
   addListItem (value){
-    request.post('http://192.168.30.11/todoitems')
-      .send(value)
-      .end((err, res)=>{
-        if (err) {
-          return err;
-        }
-
-        this.state.itemLists.push(res.body.todoItem);
-      })
+    // request.post('http://192.168.30.11/todoitems')
+    //   .send(value)
+    //   .end((err, res)=>{
+    //     if (err) {
+    //       return err;
+    //     }
+    //
+    //     this.state.itemLists.push(res.body.todoItem);
+    //   })
   }
 
   updateListItem(id) {
-    request.put(`http://192.168.30.11/todoitems/${id}`)
-      .end((err, res) => {
-        if (err) {
-          return err;
-        }
-
-        this.state.itemLists.splice(this.getIndexOfItem(id), 1, res.body);
-        this.setState({itemLists: this.state.itemLists});
-      })
+    // request.put(`http://192.168.30.11/todoitems/${id}`)
+    //   .end((err, res) => {
+    //     if (err) {
+    //       return err;
+    //     }
+    //
+    //     this.state.itemLists.splice(this.getIndexOfItem(id), 1, res.body);
+    //     this.setState({itemLists: this.state.itemLists});
+    //   })
   }
 
   deleteListItem(id) {
-    request.delete(`http://192.168.30.11/todoitems/${id}`)
-      .end((err, res) => {
-        if (err) {
-          return err;
-        }
-
-        this.state.itemLists.splice(this.getIndexOfItem(id), 1);
-
-        this.setState({itemLists: this.state.itemLists});
-      })
+    // request.delete(`http://192.168.30.11/todoitems/${id}`)
+    //   .end((err, res) => {
+    //     if (err) {
+    //       return err;
+    //     }
+    //
+    //     this.state.itemLists.splice(this.getIndexOfItem(id), 1);
+    //
+    //     this.setState({itemLists: this.state.itemLists});
+    //   })
   }
 
   render() {

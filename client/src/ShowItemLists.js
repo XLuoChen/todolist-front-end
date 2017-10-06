@@ -14,13 +14,13 @@ export default class ShowListItems extends Component{
       return <li key={index} className="list-group-item list-item">
         <input type="checkbox" className="form-check-input" onChange={this.updateListItem.bind(this, item.id)}/>
         <span className="item-text">{item.text}</span>
-        <button type="button" className="btn btn-danger" onClick={this.deleteListItem.bind(this, item.id)}>delete
+        <button type="button" className="btn btn-danger delete-button" onClick={this.deleteListItem.bind(this, item.id)}>delete
         </button>
       </li>
     });
 
     return (
-      <ul>
+      <ul className="item-lists">
         {itemLists}
       </ul>
     )
