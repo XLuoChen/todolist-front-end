@@ -1,0 +1,21 @@
+---
+- hosts: frontEnd
+  become: true
+  tasks:
+    - file:
+        path: /var/todolist-front-end
+        state: directory
+        mode: 0755
+
+    - copy:
+        src: /var/lib/jenkins/workspace/todolist-front-end/client/dist
+        dest: /var/todolist-front-end
+
+    - copy:
+        src: /var/lib/jenkins/workspace/todolist-front-end/todolist.conf
+        dest: /etc/nginx/conf.d
+
+    - service:
+        name: nginx
+        state: restarted
+
