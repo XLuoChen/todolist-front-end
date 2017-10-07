@@ -30,7 +30,7 @@
 
     - name: add map of server name
       lineinfile:
-        path: /etc/hosts
+        dest: /etc/hosts
         regexp: ''
         insertafter: EOF
         line: '127.0.0.1  www.todolist.com'
