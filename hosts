@@ -1,6 +1,0 @@
-[default]
-192.168.30.12 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-
-[webServer]
-192.168.30.13 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
-192.168.30.23 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
