@@ -2,19 +2,33 @@
 - hosts: frontEnd
   become: true
   tasks:
+    - name: create dest directory
     - file:
         path: /var/todolist-front-end
         state: directory
         mode: 0755
 
+    - name: delete old package
+    - file:
+        path: /var/todolist-front-end/dist
+        state: absent
+
+    - name: copy package
     - copy:
         src: /var/lib/jenkins/workspace/todolist-front-end/client/dist
         dest: /var/todolist-front-end
 
+    - name: copy nginx config file
     - copy:
         src: /var/lib/jenkins/workspace/todolist-front-end/todolist.conf
         dest: /etc/nginx/conf.d
 
+    - name: delete default config file in nginx
+    - file:
+        path: /etc/nginx/conf.d/default.conf
+        state: absent
+
+    - name: restart nginx
     - service:
         name: nginx
         state: restarted
