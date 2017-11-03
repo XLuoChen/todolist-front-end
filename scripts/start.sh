@@ -1,6 +1,7 @@
 #!/bin/sh
 
 #docker run -d --name todolist-frontend --restart=always -p 80:3000 todolist-frontend:cxluo
+cat ~/my_password.txt | docker login --username chengxiuluo --password-stdin
 
 docker stop todolist-frontend
 
