@@ -8,8 +8,8 @@ npm run webpack
 
 cat ~/my_password.txt | docker login --username chengxiuluo --password-stdin
 
-docker build -t chengxiuluo/${packageName}:${today} .
-docker build -t chengxiuluo/${packageName}:latest .
+sudo docker build -t chengxiuluo/${packageName}:${today} .
+sudo docker build -t chengxiuluo/${packageName}:latest .
 
-docker push chengxiuluo/todolist-frontend:${today}
-docker push chengxiuluo/todolist-frontend:latest
+sudo docker push chengxiuluo/todolist-frontend:${today}
+sudo docker push chengxiuluo/todolist-frontend:latest
