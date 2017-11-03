@@ -13,5 +13,10 @@
         src: /var/lib/jenkins/workspace/todolist-front-end/scripts/
         dest: /var/todolist-front-end
 
+    - name: add execute privilege
+      file:
+        path: /var/todolist-front-end/start.sh
+        mode: 0755
+
     - name: run container
       shell: /var/todolist-front-end/start.sh
