@@ -1,0 +1,17 @@
+---
+- hosts: webServer
+  become: true
+  tasks:
+    - name: create dest directory
+      file:
+        path: /var/todolist-front-end
+        state: directory
+        mode: 0755
+
+    - name: deploy project
+      copy:
+        src: /var/lib/jenkins/workspace/todolist-front-end/scripts/
+        dest: /var/todolist-front-end
+
+    - name: run container
+      shell: /var/todolist-front-end/start.sh

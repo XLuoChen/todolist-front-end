@@ -6,6 +6,8 @@ packageName='todolist-frontend'
 npm install
 npm run webpack
 
+cat ~/my_password.txt | docker login --username chengxiuluo --password-stdin
+
 docker build -t chengxiuluo/${packageName}:${today} .
 docker build -t chengxiuluo/${packageName}:latest .
 

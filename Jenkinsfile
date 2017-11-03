@@ -11,14 +11,13 @@ pipeline{
 
     stage('Build'){
       steps{
-        sh 'npm install'
-        sh 'npm run webpack'
+        sh '/var/lib/jenkins/workspace/todolist-front-end/scripts/publish.sh'
       }
     }
 
     stage('Deploy'){
       steps{
-        sh 'ansible-playbook /var/lib/jenkins/workspace/todolist-front-end/deploy.yml'
+        sh 'ansible-playbook /var/lib/jenkins/workspace/todolist-front-end/deploy-with-docker.yml'
       }
     }
   }
