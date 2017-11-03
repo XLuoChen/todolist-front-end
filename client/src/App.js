@@ -13,13 +13,13 @@ class App extends React.Component {
     }
   }
 
-  getIndexOfItem(id){
+  getIndexOfItem(id) {
     const itemLists = this.state.itemLists;
     return itemLists.indexOf(itemLists.find(item => item.id === id));
   }
 
   componentDidMount() {
-    request.get('http://localhost:8080/todoitems')
+    request.get('http://192.168.30.2:8080/todoitems')
       .end((err, res) => {
         if (err) {
           return;
@@ -28,48 +28,51 @@ class App extends React.Component {
       })
   }
 
-  addListItem (value){
-    // request.post('http://192.168.30.11/todoitems')
-    //   .send(value)
-    //   .end((err, res)=>{
-    //     if (err) {
-    //       return err;
-    //     }
-    //
-    //     this.state.itemLists.push(res.body.todoItem);
-    //   })
+  addListItem(value) {
+    request.post('http://192.168.30.2:8080/todoitems')
+      .send({text: value})
+      .end((err, res) => {
+        if (err) {
+          return err;
+        }
+
+        console.log(res.body)
+        this.state.itemLists.push(res.body.todoItem);
+        this.setState({itemLists: this.state.itemLists});
+      })
   }
 
   updateListItem(id) {
-    // request.put(`http://192.168.30.11/todoitems/${id}`)
-    //   .end((err, res) => {
-    //     if (err) {
-    //       return err;
-    //     }
-    //
-    //     this.state.itemLists.splice(this.getIndexOfItem(id), 1, res.body);
-    //     this.setState({itemLists: this.state.itemLists});
-    //   })
+    request.put(`http://192.168.30.2:8080/todoitems/${id}`)
+      .end((err, res) => {
+        if (err) {
+          return err;
+        }
+
+        this.state.itemLists.splice(this.getIndexOfItem(id), 1, res.body);
+        this.setState({itemLists: this.state.itemLists});
+      })
   }
 
   deleteListItem(id) {
-    // request.delete(`http://192.168.30.11/todoitems/${id}`)
-    //   .end((err, res) => {
-    //     if (err) {
-    //       return err;
-    //     }
-    //
-    //     this.state.itemLists.splice(this.getIndexOfItem(id), 1);
-    //
-    //     this.setState({itemLists: this.state.itemLists});
-    //   })
+    request.delete(`http://192.168.30.2:8080/todoitems/${id}`)
+      .end((err, res) => {
+        if (err) {
+          return err;
+        }
+
+        this.state.itemLists.splice(this.getIndexOfItem(id), 1);
+
+        this.setState({itemLists: this.state.itemLists});
+      })
   }
 
   render() {
     return (
       <div className="col-lg-offset-1">
         <AddListItem addListItem={this.addListItem.bind(this)}/>
-        <ShowItemLists itemLists={this.state.itemLists} updateListItem={this.updateListItem.bind(this)}/>
+        <ShowItemLists itemLists={this.state.itemLists} updateListItem={this.updateListItem.bind(this)}
+                       deleteListItem={this.deleteListItem.bind(this)} />
       </div>
     );
   }
