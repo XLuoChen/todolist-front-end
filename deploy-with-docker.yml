@@ -13,10 +13,14 @@
         src: /var/lib/jenkins/workspace/todolist-front-end/scripts/
         dest: /var/todolist-front-end
 
-    - name: add execute privilege
-      file:
-        path: /var/todolist-front-end/start.sh
-        mode: 0755
+    - name: get docker hub password
+      command: cat ~/my-password.txt
+      register: my_password
+
+    - name: Log into DockerHub using a custom config file
+      docker_login:
+        username: chengxiuluo
+        password: "{{my_password}}"
 
     - name: run container
-      shell: /var/todolist-front-end/start.sh
+      shell: cd /var/todolist-front-end/ && docker-compose up -d

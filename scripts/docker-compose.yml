@@ -1,0 +1,6 @@
+version: '3'
+services:
+  todolist-frontend:
+    image: chengxiuluo/todolist-frontend:latest
+    ports:
+      - "80:3000"
