@@ -17,10 +17,10 @@
       command: cat ~/my-password.txt
       register: my_password
 
-    - name: Log into DockerHub using a custom config file
+    - name: Log into DockerHub
       docker_login:
         username: chengxiuluo
-        password: "{{my_password}}"
+        password: "{{my_password.stdout}}"
 
     - name: run container
       shell: cd /var/todolist-front-end/ && docker-compose up -d
