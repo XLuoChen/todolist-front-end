@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    request.get('http://192.168.30.2:8080/todoitems')
+    request.get('/api/todoitems')
       .end((err, res) => {
         if (err) {
           return;
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   addListItem(value) {
-    request.post('http://192.168.30.2:8080/todoitems')
+    request.post('/api/todoitems')
       .send({text: value})
       .end((err, res) => {
         if (err) {
@@ -43,7 +43,7 @@ class App extends React.Component {
   }
 
   updateListItem(id) {
-    request.put(`http://192.168.30.2:8080/todoitems/${id}`)
+    request.put(`/api/todoitems/${id}`)
       .end((err, res) => {
         if (err) {
           return err;
@@ -55,7 +55,7 @@ class App extends React.Component {
   }
 
   deleteListItem(id) {
-    request.delete(`http://192.168.30.2:8080/todoitems/${id}`)
+    request.delete(`/api/todoitems/${id}`)
       .end((err, res) => {
         if (err) {
           return err;
